@@ -13,14 +13,10 @@ git clone git@github.com:datarevenue-berlin/OpenMLOps.git
 After you install minikube as described [here](https://minikube.sigs.k8s.io/docs/start/), you can start your minikube cluster by running:
 
 ```
-minikube start --kubernetes-version=v1.17.17
+minikube start # as usual
 ```
 
-Then, start a [minikube tunnel](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel) by running:
 
-```
-minikube tunnel
-```
 
 ## Step 3: Create a `my_vars.tfvars` file
 
@@ -29,19 +25,20 @@ Next you'll need to personalise the secrets and other values in the tfvars file.
 
 ```
 aws = false
-db_username = "mlflow-db-user"
-db_password = "mlflow-db-pasword"
-hostname = "myambassador.com"
+db_username = "admin"
+db_password = "admin"
+hostname = "localhost"
 ory_kratos_cookie_secret = "secret"
-ory_kratos_db_password = "password"
-install_metrics_server = false
+ory_kratos_db_password = "test"
+install_metrics_server = true
 install_feast = false
-install_seldon = false
-prefect_create_tenant_enabled = false
-jhub_proxy_secret_token = "IfYouDecideToUseJhubProxyYouShouldChangeThisValueToARandomString"
+install_seldon = true
+prefect_create_tenant_enabled = true
+#jhub_proxy_secret_token = "IfYouDecideToUseJhubProxyYouShouldChangeThisValueToARandomString"
 enable_ory_authentication = false
 oauth2_providers = []
 mlflow_artifact_root = "/tmp"
+
 ```
 
 ## Step 4: Initialising Terraform
@@ -49,7 +46,7 @@ mlflow_artifact_root = "/tmp"
 Run the following in your shell to set your Kubectl config.
 
 ```
-export KUBE_CONFIG_PATH=~./kube/config
+export KUBE_CONFIG_PATH=~/.kube/config
 ```
 
 Now change into the `OpenMLOps` directory and run `terraform init`, which will pull down the terraform dependencies that you need.
