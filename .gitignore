@@ -38,3 +38,5 @@ docs/_build/
 
 # Mac OS DSStore
 *.DS_Store
+
+*.lock.hcl

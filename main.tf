@@ -86,7 +86,8 @@ module "mlflow" {
   db_host               = module.postgres.db_host
   db_username           = var.db_username
   db_password           = var.db_password
-  default_artifact_root = var.mlflow_artifact_root
+  default_artifact_root = format("s3://%s/%s", module.minio.minio_host,
+  var.mlflow_artifact_root)
   docker_private_repo   = var.mlflow_docker_private_repo
   docker_registry_server = var.mlflow_docker_registry_server
   docker_auth_key       = var.mlflow_docker_auth_key
@@ -94,6 +95,16 @@ module "mlflow" {
   service_type = var.mlflow_service_type
 }
 
+module "minio" {
+  source    = "./modules/minio"
+  namespace = kubernetes_namespace.minio_namespace.metadata[0].name
+}
+
+resource "kubernetes_namespace" "minio_namespace" {
+  metadata {
+    name = "minio"
+  }
+}
 
 resource "kubernetes_namespace" "prefect_namespace" {
   metadata {

@@ -11,4 +11,3 @@ prefect_create_tenant_enabled = true
 #jhub_proxy_secret_token = "IfYouDecideToUseJhubProxyYouShouldChangeThisValueToARandomString"
 enable_ory_authentication = false
 oauth2_providers = []
-mlflow_artifact_root = "/tmp"
