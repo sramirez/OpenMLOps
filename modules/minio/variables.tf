@@ -10,11 +10,7 @@ variable "minio_password" {
 
 variable "default_buckets" {
   description = "Default buckets to be created"
-  default = []
+  default = "mlflow-artifacts"
 }
 
-variable "service_port" {
-  description = "Service port number"
-  default     = 9000
-}
 

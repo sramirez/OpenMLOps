@@ -5,7 +5,6 @@ resource "helm_release" "minio" {
   version = "8.1.9"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "minio"
-  port = 9000
 
   set {
     name  = "defaultBuckets"
@@ -15,6 +14,16 @@ resource "helm_release" "minio" {
   set {
     name  = "auth.rootPassword"
     value = var.minio_password
+  }
+
+  set {
+    name  = "secretKey.password"
+    value = var.minio_password
+  }
+
+  set {
+    name = "image.pullPolicy"
+    value = "Always"
   }
 
 

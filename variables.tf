@@ -26,7 +26,7 @@ variable "db_username" {
 }
 
 variable "mlflow_artifact_root" {
-  default = "mlflow"
+  default = "s3://mlops-model-artifact"
 }
 
 variable "mlflow_docker_private_repo" {
