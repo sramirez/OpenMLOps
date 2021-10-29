@@ -5,6 +5,11 @@ variable "namespace" {
 
 variable "minio_password" {
   description = "Minio root password"
+  default = "admintest"
+}
+
+variable "minio_user_root" {
+  description = "Minio root user"
   default = "admin"
 }
 

@@ -7,8 +7,13 @@ resource "helm_release" "minio" {
   chart      = "minio"
 
   set {
-    name  = "defaultBuckets"
-    value = var.default_buckets
+    name  = "accessKey.password"
+    value = var.minio_user_root
+  }
+
+  set {
+    name  = "auth.rootUser"
+    value = var.minio_user_root
   }
 
   set {
@@ -17,14 +22,18 @@ resource "helm_release" "minio" {
   }
 
   set {
+    name = "auth.forcePassword"
+    value = true
+  }
+
+  set {
     name  = "secretKey.password"
     value = var.minio_password
   }
 
   set {
-    name = "image.pullPolicy"
-    value = "Always"
+    name  = "defaultBuckets"
+    value = var.default_buckets
   }
-
 
 }
