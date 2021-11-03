@@ -15,7 +15,7 @@ variable "minio_user_root" {
 
 variable "default_buckets" {
   description = "Default buckets to be created"
-  default = "mlflow-artifacts"
+  default = "mlops-model-artifact"
 }
 
 

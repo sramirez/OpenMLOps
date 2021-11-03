@@ -50,7 +50,13 @@ variable "singleuser_profile_list" {
       kubespawner_override = {
         image = "drtools/openmlops-notebook:v1.4"
       }
-  }]
+  }, {
+      display_name = "Scipy Jupyter notebook"
+      description  = "Notebook with scipy installed."
+      default      = false
+      kubespawner_override = {
+        image = "jupyter/scipy-notebook:latest"
+      }}]
 }
 
 variable "singleuser_memory_guarantee" {
